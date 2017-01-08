@@ -10,5 +10,13 @@ function renderNum(x, y, num) {
             "height": "100px",
             "top": getTop(x),
             "left": getLeft(y)
-        }, 50);
+        }, 200);
+}
+
+function move(fromX, fromY, toX, toY) {
+    var $numCell = $("#num-cell-" + fromX + "-" + fromY);
+    $numCell.animate({
+        "top": getTop(toX),
+        "left": getLeft(toY)
+    }, 400);
 }
