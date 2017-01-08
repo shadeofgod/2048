@@ -65,6 +65,8 @@ function initBoard() {
     }
 
     updateView();
+
+    score = 0;
 }
 
 function updateView() {
@@ -136,11 +138,14 @@ function moveLeft() {
                             continue;
                         } else if (board[i][k] === board[i][j] && noBlockH(i, k,
                                 j, board)) {
-                            //move
+                            // move
                             move(i, j, i, k);
-                            //add
+                            // add
                             board[i][k] += board[i][j];
                             board[i][j] = 0;
+                            // add score
+                            score += board[i][k];
+                            updateScore(score);
                             continue;
                         }
                     }
@@ -174,6 +179,9 @@ function moveRight() {
                             //add
                             board[i][k] += board[i][j];
                             board[i][j] = 0;
+
+                            score += board[i][k];
+                            updateScore(score);
                             continue;
                         }
                     }
@@ -206,6 +214,9 @@ function moveUp() {
                             //add
                             board[k][j] += board[i][j];
                             board[i][j] = 0;
+
+                            score += board[k][j];
+                            updateScore(score);
                             continue;
                         }
                     }
@@ -238,6 +249,9 @@ function moveDown() {
                             //add
                             board[k][j] += board[i][j];
                             board[i][j] = 0;
+
+                            score += board[k][j];
+                            updateScore(score);
                             continue;
                         }
                     }
@@ -258,6 +272,6 @@ function isGameOver() {
 }
 
 function gameOver() {
-    alert("Game Over!");
+    alert("Game Over!\nYour score is " + score + "!");
     init();
 }

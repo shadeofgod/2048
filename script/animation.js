@@ -20,3 +20,7 @@ function move(fromX, fromY, toX, toY) {
         "left": getLeft(toY)
     }, 400);
 }
+
+function updateScore(score) {
+    $("#score").text(score);
+}
