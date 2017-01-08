@@ -59,7 +59,7 @@ function initBoard() {
 
     for (let i = 0; i < 4; i++) {
         board[i] = [];
-        hasConflict = [];
+        hasConflict[i] = [];
         for (let j = 0; j < 4; j++) {
             board[i][j] = 0;
             hasConflict[i][j] = false;
