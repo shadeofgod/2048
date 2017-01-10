@@ -12,6 +12,7 @@ $(document).ready(function() {
     init();
 })
 
+// responsive for mobile
 function prepareMobile() {
     if (documentWidth > 500) {
         gridContainerWidth = 500;
@@ -28,7 +29,7 @@ function prepareMobile() {
     $(".grid-cell").css({
         "width": cellSideLength,
         "height": cellSideLength,
-        "border-radius": 0.02 * cellSideLength
+        "border-radius": 0.06 * cellSideLength
     })
 }
 
@@ -181,7 +182,8 @@ function updateView() {
     }
     $(".num-cell").css({
         "line-height": cellSideLength + "px",
-        "font-size": 0.4 * cellSideLength + "px"
+        "font-size": 0.4 * cellSideLength + "px",
+        "border-radius": 0.06 * cellSideLength
     })
 }
 
@@ -209,6 +211,7 @@ function randomNumGenerate() {
 }
 
 function moveLeft() {
+    // check if it can move left firstly
     if (canMoveLeft(board)) {
         for (let i = 0; i < 4; i++) {
             for (let j = 1; j < 4; j++) {
