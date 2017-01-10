@@ -1,6 +1,12 @@
 var board = [];
 var score = 0;
 var hasConflict = [];
+
+var startX = 0;
+var startY = 0;
+var endX = 0;
+var endY = 0;
+
 $(document).ready(function() {
     prepareMobile();
     init();
@@ -58,6 +64,56 @@ $(document).keydown(function(event) {
             break;
         default:
             break;
+    }
+})
+
+document.addEventListener("touchstart", function(event) {
+    startX = event.touches[0].pageX;
+    startY = event.touches[0].pageY;
+})
+
+document.addEventListener("touchmove", function(e) {
+    event.preventDefault();
+})
+
+document.addEventListener("touchend", function(event) {
+    endX = event.changedTouches[0].pageX;
+    endY = event.changedTouches[0].pageY;
+
+    var deltaX = endX - startX;
+    var deltaY = endY - startY;
+    var abs = Math.abs;
+
+    // return if its just to click
+    if (abs(deltaX) < 0.3 * documentWidth && abs(deltaY) < 0.3 *
+        documentWidth) {
+        return;
+    }
+
+    if (abs(deltaX) >= abs(deltaY)) { // x
+        if (deltaX > 0) { // move right
+            if (moveRight()) {
+                setTimeout(randomNumGenerate, 200);
+                setTimeout(isGameOver, 300);
+            }
+        } else { //move left
+            if (moveLeft()) {
+                setTimeout(randomNumGenerate, 200);
+                setTimeout(isGameOver, 300);
+            }
+        }
+    } else { // y
+        if (deltaY > 0) { // move down
+            if (moveDown()) {
+                setTimeout(randomNumGenerate, 200);
+                setTimeout(isGameOver, 300);
+            }
+        } else { // move up
+            if (moveUp()) {
+                setTimeout(randomNumGenerate, 200);
+                setTimeout(isGameOver, 300);
+            }
+        }
     }
 })
 
@@ -143,7 +199,7 @@ function randomNumGenerate() {
         var rd = Math.floor(Math.random() * boardEmpty.length);
         var x = boardEmpty[rd][0];
         var y = boardEmpty[rd][1];
-        var randomNum = Math.random() > 0.5 ? 2 : 1024;
+        var randomNum = Math.random() > 0.5 ? 2 : 4;
         board[x][y] = randomNum;
         renderNum(x, y, randomNum);
         return true;
