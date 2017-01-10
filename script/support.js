@@ -1,9 +1,14 @@
+documentWidth = window.screen.availWidth;
+gridContainerWidth = 0.92 * documentWidth;
+cellSideLength = 0.18 * documentWidth;
+cellSpace = 0.04 * documentWidth;
+
 function getTop(i) {
-    return (20 + 120 * i);
+    return (cellSpace + (cellSpace + cellSideLength) * i);
 }
 
 function getLeft(j) {
-    return (20 + 120 * j);
+    return (cellSpace + (cellSpace + cellSideLength) * j);
 }
 
 // 数字背景颜色

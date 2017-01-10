@@ -2,8 +2,29 @@ var board = [];
 var score = 0;
 var hasConflict = [];
 $(document).ready(function() {
+    prepareMobile();
     init();
 })
+
+function prepareMobile() {
+    if (documentWidth > 500) {
+        gridContainerWidth = 500;
+        cellSpace = 20;
+        cellSideLength = 100;
+    }
+    $("#grid-container").css({
+        "width": gridContainerWidth - 2 * cellSpace,
+        "height": gridContainerWidth - 2 * cellSpace,
+        "padding": cellSpace,
+        "border-radius": 0.02 * gridContainerWidth
+    });
+
+    $(".grid-cell").css({
+        "width": cellSideLength,
+        "height": cellSideLength,
+        "border-radius": 0.02 * cellSideLength
+    })
+}
 
 $(document).keydown(function(event) {
     switch (event.keyCode) {
@@ -83,14 +104,14 @@ function updateView() {
                 theNumCell.css({
                     "width": 0,
                     "height": 0,
-                    "top": getTop(i) + 50,
-                    "left": getLeft(j) + 50
+                    "top": getTop(i) + cellSideLength / 2,
+                    "left": getLeft(j) + cellSideLength / 2
                 })
 
             } else {
                 theNumCell.css({
-                        "width": "100px",
-                        "height": "100px",
+                        "width": cellSideLength,
+                        "height": cellSideLength,
                         "top": getTop(i),
                         "left": getLeft(j),
                         "background-color": setNumCellBgColor(board[i][j]),
@@ -102,6 +123,10 @@ function updateView() {
             hasConflict[i][j] = false;
         }
     }
+    $(".num-cell").css({
+        "line-height": cellSideLength + "px",
+        "font-size": 0.4 * cellSideLength + "px"
+    })
 }
 
 // 生成随机数字并且渲染
@@ -118,7 +143,7 @@ function randomNumGenerate() {
         var rd = Math.floor(Math.random() * boardEmpty.length);
         var x = boardEmpty[rd][0];
         var y = boardEmpty[rd][1];
-        var randomNum = Math.random() > 0.5 ? 2 : 4;
+        var randomNum = Math.random() > 0.5 ? 2 : 1024;
         board[x][y] = randomNum;
         renderNum(x, y, randomNum);
         return true;

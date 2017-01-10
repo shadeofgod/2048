@@ -6,8 +6,8 @@ function renderNum(x, y, num) {
         })
         .text(num)
         .animate({
-            "width": "100px",
-            "height": "100px",
+            "width": cellSideLength,
+            "height": cellSideLength,
             "top": getTop(x),
             "left": getLeft(y)
         }, 200);
