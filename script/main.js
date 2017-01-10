@@ -73,9 +73,11 @@ document.addEventListener("touchstart", function(event) {
     startY = event.touches[0].pageY;
 })
 
-document.addEventListener("touchmove", function(e) {
-    event.preventDefault();
-})
+var container = document.getElementById("grid-container");
+container.addEventListener("touchmove",
+    function(e) {
+        event.preventDefault();
+    })
 
 document.addEventListener("touchend", function(event) {
     endX = event.changedTouches[0].pageX;
