@@ -1,4 +1,6 @@
 # 2048
+demo: [shadeofgod.github.io/2048](https://shadeofgod.github.io/2048)
+
 2048 game by javascript inspired by [imooc](http://www.imooc.com/learn/76)
 
 优化了随机生成数字位置的算法
